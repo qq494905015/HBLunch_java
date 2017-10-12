@@ -20,4 +20,5 @@
         <module>com.hblunch.order.model</module>
         <module>com.hblunch.order.rest</module>
     </modules>
+
 </project>

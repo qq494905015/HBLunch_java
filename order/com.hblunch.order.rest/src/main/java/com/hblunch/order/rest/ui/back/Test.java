@@ -3,6 +3,8 @@ package com.hblunch.order.rest.ui.back;/**
  */
 
 import com.hblunch.order.auto.dao.TestMapper;
+import com.hblunch.order.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +30,15 @@ import javax.annotation.Resource;
 @RequestMapping("/back/testResource")
 public class Test {
 
+    @Autowired
+    private TestService testService;
+
     @Resource
     private TestMapper testMapper;
-
     @RequestMapping(value = "/test")
     public Object test() {
+//        return testService.selectByPrimaryKey("123");
+        testService.selectByPrimaryKey("123");
         return testMapper.selectByPrimaryKey("123");
     }
 }
