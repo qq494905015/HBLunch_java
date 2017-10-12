@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>com.hblunch.order.rest</artifactId>
+    <name>com.hblunch.order.rest</name>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <artifactId>com.hblunch.order</artifactId>
+        <groupId>hblunch</groupId>
+        <version>0.0.1</version>
+    </parent>
+
+    <!-- 依赖包，根据实际需求添加 -->
+    <dependencies>
+        <dependency>
+            <groupId>hblunch</groupId>
+            <artifactId>com.hblunch.order.model</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>hblunch</groupId>
+            <artifactId>com.hblunch.order.service</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.hblunch.order.rest.OrderApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
