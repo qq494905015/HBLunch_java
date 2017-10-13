@@ -3,10 +3,10 @@ package com.hblunch.order.rest.ui.back;/**
  */
 
 import com.hblunch.order.auto.dao.TestMapper;
-import com.hblunch.order.service.TestService;
+import com.hblunch.order.manual.dao.TestExtMapper;
+import com.hblunch.order.manual.dto.TestDTO;
+import com.hblunch.order.service.ITestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,14 +31,24 @@ import javax.annotation.Resource;
 public class Test {
 
     @Autowired
-    private TestService testService;
+    private ITestService testService;
 
     @Resource
     private TestMapper testMapper;
+
+    @Resource
+    private TestExtMapper testExtMapper;
+
+
     @RequestMapping(value = "/test")
     public Object test() {
-//        return testService.selectByPrimaryKey("123");
-        testService.selectByPrimaryKey("123");
-        return testMapper.selectByPrimaryKey("123");
+        return testService.queryTestById("123");
     }
+
+    @RequestMapping(value = "/testList")
+    public Object testLIst(TestDTO testDTO) {
+        return testService.queryList(testDTO);
+    }
+
+
 }

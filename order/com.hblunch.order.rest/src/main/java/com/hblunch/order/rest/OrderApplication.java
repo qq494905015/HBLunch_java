@@ -22,7 +22,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication(scanBasePackages = { "com.hblunch.*.*" })
 // MyBatis 支持
-@MapperScan("com.hblunch.*.*")
+@MapperScan("com.hblunch.order.*")
 public class OrderApplication {
 
     public static void main(String[] args) {

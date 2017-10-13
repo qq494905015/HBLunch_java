@@ -3,6 +3,9 @@ package com.hblunch.order.service;/**
  */
 
 import com.hblunch.order.auto.model.Test;
+import com.hblunch.order.manual.dto.TestDTO;
+
+import java.util.List;
 
 /**
  * <pre>
@@ -18,6 +21,8 @@ import com.hblunch.order.auto.model.Test;
  *                   </pre>
  * @date 2017-10-12
  */
-public interface TestService {
-    Test selectByPrimaryKey(String id);
+public interface ITestService {
+    public TestDTO queryTestById(String id);
+
+    List<TestDTO> queryList(TestDTO testDTO);
 }

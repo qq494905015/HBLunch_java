@@ -2,13 +2,17 @@ package com.hblunch.order.service.impl;/**
  * Created by kong on 2017-10-12.
  */
 
+import com.github.pagehelper.PageHelper;
 import com.hblunch.order.auto.dao.TestMapper;
 import com.hblunch.order.auto.model.Test;
-import com.hblunch.order.service.TestService;
+import com.hblunch.order.manual.dao.TestExtMapper;
+import com.hblunch.order.manual.dto.TestDTO;
+import com.hblunch.order.service.ITestService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <pre>
@@ -24,13 +28,21 @@ import javax.annotation.Resource;
  *                   </pre>
  * @date 2017-10-12
  */
-@Service
+@Service("testService")
 @Transactional
-public class TestServiceImpl implements TestService{
+public class TestServiceImpl implements ITestService {
     @Resource
-    private TestMapper testMapper;
+    private TestExtMapper testExtMapper;
     @Override
-    public Test selectByPrimaryKey(String id) {
-        return testMapper.selectByPrimaryKey("123");
+    public TestDTO queryTestById(String id) {
+        return testExtMapper.selectByPrimaryKey("123");
+    }
+
+    @Override
+    public List<TestDTO> queryList(TestDTO testDTO) {
+        if (testDTO.getPage() != null && testDTO.getRows() != null) {
+            PageHelper.startPage(testDTO.getPage(), testDTO.getRows());
+        }
+        return testExtMapper.selectAll();
     }
 }
