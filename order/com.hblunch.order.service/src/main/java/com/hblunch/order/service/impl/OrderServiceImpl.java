@@ -3,11 +3,11 @@ package com.hblunch.order.service.impl;/**
  */
 
 import com.github.pagehelper.PageHelper;
-import com.hblunch.order.auto.dao.TestMapper;
-import com.hblunch.order.auto.model.Test;
+import com.hblunch.order.manual.dao.OrderExtMapper;
 import com.hblunch.order.manual.dao.TestExtMapper;
+import com.hblunch.order.manual.dto.OrderDTO;
 import com.hblunch.order.manual.dto.TestDTO;
-import com.hblunch.order.service.ITestService;
+import com.hblunch.order.service.IOrderService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,21 +28,21 @@ import java.util.List;
  *                   </pre>
  * @date 2017-10-12
  */
-@Service("testService")
+@Service("orderService")
 @Transactional
-public class TestServiceImpl implements ITestService {
+public class OrderServiceImpl implements IOrderService {
     @Resource
-    private TestExtMapper testExtMapper;
+    private OrderExtMapper orderExtMapper;
     @Override
-    public TestDTO queryTestById(String id) {
-        return testExtMapper.selectByPrimaryKey("123");
+    public OrderDTO queryOrderById(String id) {
+        return orderExtMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public List<TestDTO> queryList(TestDTO testDTO) {
-        if (testDTO.getPage() != null && testDTO.getRows() != null) {
-            PageHelper.startPage(testDTO.getPage(), testDTO.getRows());
+    public List<OrderDTO> queryOrderList(OrderDTO orderDTO) {
+        if (orderDTO.getPage() != null && orderDTO.getRows() != null) {
+            PageHelper.startPage(orderDTO.getPage(), orderDTO.getRows());
         }
-        return testExtMapper.select(testDTO);
+        return orderExtMapper.select(orderDTO);
     }
 }
