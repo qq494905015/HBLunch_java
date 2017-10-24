@@ -5,6 +5,7 @@ package com.hblunch.order.rest; /**
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * <pre>
@@ -23,6 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = { "com.hblunch.*.*" })
 // MyBatis 支持
 @MapperScan("com.hblunch.order.*")
+@EnableScheduling
 public class OrderApplication {
 
     public static void main(String[] args) {
