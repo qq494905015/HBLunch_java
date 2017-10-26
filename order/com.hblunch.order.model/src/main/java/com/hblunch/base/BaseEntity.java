@@ -43,6 +43,10 @@ public class BaseEntity {
 
     @Transient
     private Integer rows = 10;
+    @Transient
+    private String selectStartTime;
+    @Transient
+    private String selectEndTime;
 
     public Integer getPage() {
         return page;
@@ -75,5 +79,22 @@ public class BaseEntity {
      */
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
+    }
+
+
+    public String getSelectStartTime() {
+        return selectStartTime;
+    }
+
+    public void setSelectStartTime(String selectStartTime) {
+        this.selectStartTime = selectStartTime;
+    }
+
+    public String getSelectEndTime() {
+        return selectEndTime;
+    }
+
+    public void setSelectEndTime(String selectEndTime) {
+        this.selectEndTime = selectEndTime;
     }
 }

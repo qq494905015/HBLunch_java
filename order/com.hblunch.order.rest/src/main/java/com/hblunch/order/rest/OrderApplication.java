@@ -24,7 +24,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication(scanBasePackages = { "com.hblunch.*.*" })
 // MyBatis 支持
 @MapperScan("com.hblunch.order.*")
-@EnableScheduling
+//@EnableScheduling
 public class OrderApplication {
 
     public static void main(String[] args) {

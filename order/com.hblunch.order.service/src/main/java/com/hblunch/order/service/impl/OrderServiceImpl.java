@@ -3,6 +3,7 @@ package com.hblunch.order.service.impl;/**
  */
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hblunch.order.manual.dao.OrderExtMapper;
 import com.hblunch.order.manual.dao.TestExtMapper;
 import com.hblunch.order.manual.dto.OrderDTO;
@@ -39,10 +40,10 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public List<OrderDTO> queryOrderList(OrderDTO orderDTO) {
+    public PageInfo<OrderDTO> queryOrderList(OrderDTO orderDTO) {
         if (orderDTO.getPage() != null && orderDTO.getRows() != null) {
             PageHelper.startPage(orderDTO.getPage(), orderDTO.getRows());
         }
-        return orderExtMapper.select(orderDTO);
+        return new PageInfo(orderExtMapper.queryOrderList(orderDTO));
     }
 }

@@ -2,6 +2,7 @@ package com.hblunch.order.service;/**
  * Created by kong on 2017-10-12.
  */
 
+import com.github.pagehelper.PageInfo;
 import com.hblunch.order.manual.dto.OrderDTO;
 
 import java.util.List;
@@ -23,5 +24,5 @@ import java.util.List;
 public interface IOrderService {
     public OrderDTO queryOrderById(String id);
 
-    List<OrderDTO> queryOrderList(OrderDTO orderDTO);
+    PageInfo<OrderDTO> queryOrderList(OrderDTO orderDTO);
 }

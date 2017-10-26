@@ -9,7 +9,9 @@ import com.hblunch.order.manual.dto.TestDTO;
 import com.hblunch.order.service.IOrderService;
 import com.hblunch.order.service.ITestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -41,8 +43,8 @@ public class OrderResource {
         return orderService.queryOrderById("123");
     }
 
-    @RequestMapping(value = "/queryOrderList")
-    public Object queryOrderList(OrderDTO orderDTO) {
+    @RequestMapping(value = "/queryOrderList" ,method = {RequestMethod.POST} )
+    public Object queryOrderList(@RequestBody OrderDTO orderDTO) {
         return orderService.queryOrderList(orderDTO);
     }
 

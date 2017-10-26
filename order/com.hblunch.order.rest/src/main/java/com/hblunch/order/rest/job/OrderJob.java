@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
  *                   </pre>
  * @date 2017-10-24
  */
-@Component
+//@Component
 public class OrderJob {
     //单位是毫秒
     public final static long DELAY_TIME =  5 * 1000;
