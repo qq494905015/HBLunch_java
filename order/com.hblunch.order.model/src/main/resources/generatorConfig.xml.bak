@@ -65,7 +65,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table schema="" tableName="t_hb_order_menu" domainObjectName="OrderMenu"
+		<table schema="" tableName="t_hb_order" domainObjectName="Order"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
