@@ -5,14 +5,15 @@ package com.hblunch.order.service.impl;/**
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hblunch.order.manual.dao.OrderExtMapper;
-import com.hblunch.order.manual.dao.TestExtMapper;
 import com.hblunch.order.manual.dto.OrderDTO;
-import com.hblunch.order.manual.dto.TestDTO;
 import com.hblunch.order.service.IOrderService;
+import com.hblunch.utils.DateUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,7 +44,21 @@ public class OrderServiceImpl implements IOrderService {
     public PageInfo<OrderDTO> queryOrderList(OrderDTO orderDTO) {
         if (orderDTO.getPage() != null && orderDTO.getRows() != null) {
             PageHelper.startPage(orderDTO.getPage(), orderDTO.getRows());
+            PageHelper.orderBy("order_date desc");
         }
+        return new PageInfo(orderExtMapper.queryOrderList(orderDTO));
+    }
+
+    @Override
+    public PageInfo<OrderDTO> queryOrderListByTimeJob(OrderDTO orderDTO) {
+        if (orderDTO.getPage() != null && orderDTO.getRows() != null) {
+            PageHelper.startPage(orderDTO.getPage(), orderDTO.getRows());
+            PageHelper.orderBy("order_date desc");
+        }
+
+        //获取今天到现在的时间段
+        orderDTO.setSelectStartTime(DateUtils.FORMAT_YYYYMMDD.format(new Date())+" 00:00:00");
+        orderDTO.setSelectEndTime(DateUtils.FORMAT_YYYYMMDDHHmmss.format(new Date()));
         return new PageInfo(orderExtMapper.queryOrderList(orderDTO));
     }
 }

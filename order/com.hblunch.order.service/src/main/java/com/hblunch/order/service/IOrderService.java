@@ -25,4 +25,11 @@ public interface IOrderService {
     public OrderDTO queryOrderById(String id);
 
     PageInfo<OrderDTO> queryOrderList(OrderDTO orderDTO);
+
+    /**
+     * 只查询今天到当前时间的订单记录
+     * @param orderDTO
+     * @return
+     */
+    PageInfo<OrderDTO> queryOrderListByTimeJob(OrderDTO orderDTO);
 }

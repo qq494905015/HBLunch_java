@@ -48,4 +48,9 @@ public class OrderResource {
         return orderService.queryOrderList(orderDTO);
     }
 
+    @RequestMapping(value = "/queryOrderListByTimeJob" ,method = {RequestMethod.POST} )
+    public Object queryOrderListByTimeJob(@RequestBody OrderDTO orderDTO) {
+        return orderService.queryOrderListByTimeJob(orderDTO);
+    }
+
 }
