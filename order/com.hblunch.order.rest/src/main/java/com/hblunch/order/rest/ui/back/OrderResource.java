@@ -4,8 +4,10 @@ package com.hblunch.order.rest.ui.back;/**
 
 import com.hblunch.order.auto.dao.TestMapper;
 import com.hblunch.order.manual.dao.TestExtMapper;
+import com.hblunch.order.manual.dto.LoginDTO;
 import com.hblunch.order.manual.dto.OrderDTO;
 import com.hblunch.order.manual.dto.TestDTO;
+import com.hblunch.order.service.ILoginService;
 import com.hblunch.order.service.IOrderService;
 import com.hblunch.order.service.ITestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,9 @@ public class OrderResource {
     @Autowired
     private IOrderService orderService;
 
+    @Autowired
+    private ILoginService loginService;
+
 
     @RequestMapping(value = "/queryOrderById")
     public Object queryOrderById() {
@@ -51,6 +56,11 @@ public class OrderResource {
     @RequestMapping(value = "/queryOrderListByTimeJob" ,method = {RequestMethod.POST} )
     public Object queryOrderListByTimeJob(@RequestBody OrderDTO orderDTO) {
         return orderService.queryOrderListByTimeJob(orderDTO);
+    }
+
+    @RequestMapping(value = "/queryLoginInfo" ,method = {RequestMethod.POST} )
+    public Object queryLoginInfo(@RequestBody LoginDTO loginDTO) {
+        return loginService.queryLoginInfo(loginDTO);
     }
 
 }

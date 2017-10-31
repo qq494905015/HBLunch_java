@@ -21,7 +21,7 @@
 		<property name="beginningDelimiter" value="`" />
 		<property name="endingDelimiter" value="`" />
 		<!-- 是否覆盖原来的代码 -->
-		<property name="mergeable" value="false"/>
+		<property name="mergeable" value="true"/>
 		<!-- 增加Models ToStirng方法 -->
 		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
 		<!-- 增加爱Models Serializable实现 -->
@@ -65,7 +65,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table schema="" tableName="t_hb_order" domainObjectName="Order"
+		<table schema="" tableName="t_hb_login" domainObjectName="Login"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
