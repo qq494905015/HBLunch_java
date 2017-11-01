@@ -63,4 +63,14 @@ public class OrderResource {
         return loginService.queryLoginInfo(loginDTO);
     }
 
+    @RequestMapping(value = "/countOrderPriceForChart" ,method = {RequestMethod.POST} )
+    public Object countOrderPriceForChart(@RequestBody OrderDTO orderDTO) {
+        return orderService.countOrderPriceForChart(orderDTO);
+    }
+
+    @RequestMapping(value = "/countOrderMenuForChart" ,method = {RequestMethod.POST} )
+    public Object countOrderMenuForChart(@RequestBody OrderDTO orderDTO) {
+        return orderService.countOrderMenuForChart(orderDTO);
+    }
+
 }

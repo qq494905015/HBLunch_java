@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.Serializable;
 @Table(name="t_hb_order")
-public class OrderDTO extends BaseEntity implements Serializable{
+public class OrderDTO  extends OrderChartDTO implements Serializable{
     /**
      * 主键
      * 表 : t_hb_order

@@ -61,4 +61,14 @@ public class OrderServiceImpl implements IOrderService {
         orderDTO.setSelectEndTime(DateUtils.FORMAT_YYYYMMDDHHmmss.format(new Date()));
         return new PageInfo(orderExtMapper.queryOrderList(orderDTO));
     }
+
+    @Override
+    public List<OrderDTO> countOrderPriceForChart(OrderDTO orderDTO) {
+        return orderExtMapper.countOrderPriceForChart(orderDTO);
+    }
+
+    @Override
+    public List<OrderDTO> countOrderMenuForChart(OrderDTO orderDTO) {
+        return orderExtMapper.countOrderMenuForChart(orderDTO);
+    }
 }

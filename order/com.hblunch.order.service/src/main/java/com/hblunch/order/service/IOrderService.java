@@ -32,4 +32,20 @@ public interface IOrderService {
      * @return
      */
     PageInfo<OrderDTO> queryOrderListByTimeJob(OrderDTO orderDTO);
+
+    /**
+     * 统计营业额
+     * @param orderDTO
+     * @return
+     */
+    List<OrderDTO> countOrderPriceForChart(OrderDTO orderDTO);
+
+
+    /**
+     * 统计菜品分布
+     * @param orderDTO
+     * @return
+     */
+    List<OrderDTO> countOrderMenuForChart(OrderDTO orderDTO);
+
 }

@@ -57,4 +57,51 @@
         </if>
         GROUP BY t.`id`
     </select>
+
+    <select id="countOrderPriceForChart" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        SUM(t2.`menu_price`) AS 'totalOrderPrice',
+        SUM(t2.`menu_count`) AS 'totalOrderCount' ,
+        SUM(t2.`menu_price`)/SUM(t2.`menu_count`) AS 'avgOrderPrice',
+        t.store_name
+        FROM
+        `t_hb_order` t
+        LEFT JOIN `t_hb_order_menu` t2
+        ON t.`id` = t2.`order_id`
+        where 1=1
+        <if test="orderId != null and orderId !=''">
+            and order_id = #{orderId,jdbcType=VARCHAR}
+        </if>
+        <if test="storeName != null and storeName !='' ">
+            and store_name = #{storeName,jdbcType=VARCHAR}
+        </if>
+        <if test="selectStartTime != null and  selectEndTime != null">
+            and order_date between #{selectStartTime,jdbcType=VARCHAR} and #{selectEndTime,jdbcType=VARCHAR}
+        </if>
+        GROUP BY t.store_name;
+    </select>
+
+    <select id="countOrderMenuForChart" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        SUM(t2.`menu_count`)  AS 'totalOrderCount' ,
+        t2.menu_name as 'menuName',
+        SUM(t2.`menu_price`)  AS 'totalOrderPrice' ,
+        SUM(t2.`menu_price`)/SUM(t2.`menu_count`) AS 'avgOrderPrice',
+        t.store_name
+        FROM
+        `t_hb_order` t
+        LEFT JOIN `t_hb_order_menu` t2
+        ON t.`id` = t2.`order_id`
+        where 1=1
+        <if test="orderId != null and orderId !=''">
+            and order_id = #{orderId,jdbcType=VARCHAR}
+        </if>
+        <if test="storeName != null and storeName !='' ">
+            and store_name = #{storeName,jdbcType=VARCHAR}
+        </if>
+        <if test="selectStartTime != null and  selectEndTime != null">
+            and order_date between #{selectStartTime,jdbcType=VARCHAR} and #{selectEndTime,jdbcType=VARCHAR}
+        </if>
+        GROUP BY t2.`menu_name`
+    </select>
 </mapper>
