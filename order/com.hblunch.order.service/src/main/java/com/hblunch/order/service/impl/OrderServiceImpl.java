@@ -95,7 +95,7 @@ public class OrderServiceImpl implements IOrderService {
                 String menuCount = menuCountList[i] ;
                 OrderMenuDTO menuDto = new OrderMenuDTO();
                 menuDto.setId(UUID.randomUUID().toString());
-                menuDto.setOrderId(orderId);
+                menuDto.setOrderId(id);
                 menuDto.setMenuName(menuName);
                 menuDto.setMenuPrice(menuPrice);
                 menuDto.setMenuCount(Integer.parseInt(menuCount));
