@@ -48,4 +48,11 @@ public interface IOrderService {
      */
     List<OrderDTO> countOrderMenuForChart(OrderDTO orderDTO);
 
+    /**
+     * 统计菜品分布
+     * @param orderDTO
+     * @return
+     */
+    Object insertOrder(OrderDTO orderDTO);
+
 }

@@ -73,4 +73,11 @@ public class OrderResource {
         return orderService.countOrderMenuForChart(orderDTO);
     }
 
+    @RequestMapping(value = "/insertOrder" ,method = {RequestMethod.POST} )
+    public Object insertOrder(@RequestBody OrderDTO orderDTO) {
+        return orderService.insertOrder(orderDTO);
+    }
+
+
+
 }

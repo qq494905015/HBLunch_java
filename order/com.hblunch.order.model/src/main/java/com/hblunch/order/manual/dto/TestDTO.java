@@ -50,7 +50,6 @@ public class TestDTO  extends BaseEntity implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(super.getId());
         sb.append(", name=").append(name);
         sb.append("]");
         return sb.toString();

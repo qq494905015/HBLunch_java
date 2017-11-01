@@ -5,7 +5,9 @@ package com.hblunch.order.service.impl;/**
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hblunch.order.manual.dao.OrderExtMapper;
+import com.hblunch.order.manual.dao.OrderMenuExtMapper;
 import com.hblunch.order.manual.dto.OrderDTO;
+import com.hblunch.order.manual.dto.OrderMenuDTO;
 import com.hblunch.order.service.IOrderService;
 import com.hblunch.utils.DateUtils;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * <pre>
@@ -35,6 +38,10 @@ import java.util.List;
 public class OrderServiceImpl implements IOrderService {
     @Resource
     private OrderExtMapper orderExtMapper;
+
+    @Resource
+    private OrderMenuExtMapper orderMenuExtMapper;
+
     @Override
     public OrderDTO queryOrderById(String id) {
         return orderExtMapper.selectByPrimaryKey(id);
@@ -70,5 +77,31 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public List<OrderDTO> countOrderMenuForChart(OrderDTO orderDTO) {
         return orderExtMapper.countOrderMenuForChart(orderDTO);
+    }
+    @Override
+    public Object insertOrder(OrderDTO orderDTO) {
+        String id = UUID.randomUUID().toString();
+        orderDTO.setId(id);
+        String orderId = String.valueOf(System.currentTimeMillis());
+        orderDTO.setOrderId(orderId);
+        int flagCount = orderExtMapper.insert(orderDTO);
+        String[] menuNameList = orderDTO.getMenuName().split(",");
+        String[] menuPriceList = orderDTO.getMenuPrice().split(",");
+        String[] menuCountList = orderDTO.getMenuCount().split(",");
+        if(flagCount>0){
+            for(int i= 0 ;i<menuNameList.length;i++){
+                String menuName = menuNameList[i] ;
+                String menuPrice = menuPriceList[i] ;
+                String menuCount = menuCountList[i] ;
+                OrderMenuDTO menuDto = new OrderMenuDTO();
+                menuDto.setId(UUID.randomUUID().toString());
+                menuDto.setOrderId(orderId);
+                menuDto.setMenuName(menuName);
+                menuDto.setMenuPrice(menuPrice);
+                menuDto.setMenuCount(Integer.parseInt(menuCount));
+                orderMenuExtMapper.insert(menuDto);
+            }
+        }
+        return flagCount;
     }
 }

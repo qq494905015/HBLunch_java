@@ -33,11 +33,6 @@ import javax.persistence.*;
  */
 public class BaseEntity {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-
     @Transient
     private Integer page = 1;
 
@@ -63,24 +58,6 @@ public class BaseEntity {
     public void setRows(Integer rows) {
         this.rows = rows;
     }
-    /**
-     * get method
-     *
-     * @return test.id：
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * set method
-     *
-     * @param id
-     */
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
 
     public String getSelectStartTime() {
         return selectStartTime;
